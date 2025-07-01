@@ -1,6 +1,6 @@
 name: treeed_flutter
 description: "Treeed state manager for Flutter."
-version: 0.0.1
+version: 0.0.2
 homepage:
 
 environment:
@@ -8,7 +8,7 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  treeed: ^0.0.1
+  treeed: ^0.0.2
   flutter:
     sdk: flutter
 
