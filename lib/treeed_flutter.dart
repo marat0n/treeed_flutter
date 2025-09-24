@@ -1,14 +1,29 @@
 import 'package:flutter/widgets.dart';
 import 'package:treeed/treeed.dart';
 
+/// Widget for rebuilding content by `builder` when `stateToWatch` is updated.
 class TreeedObservable extends StatefulWidget {
+  /// Widget for rebuilding content by `builder` when `stateToWatch` is updated.
+  /// Example:
+  /// ```dart
+  /// Center(
+  ///   child: TreeedObservable(
+  ///     stateToWatch: someState,
+  ///     builder: (context) => Text(someState.toString())
+  ///   ),
+  /// )
+  /// ```
   const TreeedObservable({
     super.key,
     required this.stateToWatch,
     required this.builder,
   });
 
+  /// Provided state will be watched for updates.
+  /// If any update is triggered then content will be rebuilt by `builder` function.
   final TreeedUpdatable stateToWatch;
+
+  /// Function for rebuilding updatable content. Rebuilds when `stateToWatch` fires an update event.
   final Widget Function(BuildContext) builder;
 
   @override
@@ -36,6 +51,7 @@ class _TreeedObservableState extends State<TreeedObservable> {
   }
 }
 
+/// Same as `TreeedObservable` but with animation feature.
 class TreeedAnimatedObservable extends StatefulWidget {
   const TreeedAnimatedObservable({
     super.key,
@@ -45,9 +61,16 @@ class TreeedAnimatedObservable extends StatefulWidget {
     this.transitionBuilder,
   });
 
+  /// Provided state will be watched for updates. If any update is triggered then content will be rebuilt by `builder` function.
   final TreeedUpdatable stateToWatch;
+
+  /// Function for rebuilding updatable content. Rebuilds when `stateToWatch` fires an update event.
   final Widget Function(BuildContext) builder;
+
+  /// Time of the animation from `transitionBuilder` to complete.
   final Duration changingDuration;
+
+  // Animation building function for transitioned animation between two `builder` calls.
   final Widget Function(Widget, Animation<double>)? transitionBuilder;
 
   @override
