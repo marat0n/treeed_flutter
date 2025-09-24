@@ -104,3 +104,12 @@ class _TreeedAnimatedObservableState extends State<TreeedAnimatedObservable> {
     );
   }
 }
+
+/// Mixin for widget's `State` that enables `TreeedGroup`-like functionality.
+/// Every state created with `treeedState` function will automatically fire the `callUpdateState` event which calls `setState` if any that state's values has been changed.
+mixin TreeedWidget<TWidget extends StatefulWidget> on State<TWidget> {
+  void callUpdateState(_) => setState(() {});
+
+  TreeedState<T> treeedState<T>(T value) =>
+      TreeedState(value)..listen(callUpdateState);
+}
