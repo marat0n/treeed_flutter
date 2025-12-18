@@ -118,3 +118,22 @@ mixin TreeedWidget<TWidget extends StatefulWidget> on State<TWidget> {
   late final ts = treeedState;
 }
 
+extension ObservableConstructExt on TreeedState {
+  /// Creates an `TreeedObservable` based on the state.
+  /// ---
+  /// Those two calls are equivalent:
+  /// ```
+  /// final state = TreeedState(0);
+  ///
+  /// // 1) Longer
+  /// TreeedObservable(stateToWatch: state, builder: (context) => ...);
+  ///
+  /// // 2) Shorter
+  /// state.observable(builder: (context) => ...);
+  /// ```
+  TreeedObservable observable({
+    required Widget Function(BuildContext) builder,
+  }) {
+    return TreeedObservable(stateToWatch: this, builder: builder);
+  }
+}
