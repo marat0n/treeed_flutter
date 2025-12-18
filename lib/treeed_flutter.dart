@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:treeed/treeed.dart';
 
+export 'package:treeed/treeed.dart';
+
 /// Widget for rebuilding content by `builder` when `stateToWatch` is updated.
 class TreeedObservable extends StatefulWidget {
   /// Widget for rebuilding content by `builder` when `stateToWatch` is updated.
@@ -70,7 +72,7 @@ class TreeedAnimatedObservable extends StatefulWidget {
   /// Time of the animation from `transitionBuilder` to complete.
   final Duration changingDuration;
 
-  // Animation building function for transitioned animation between two `builder` calls.
+  /// Animation building function for transitioned animation between two `builder` calls.
   final Widget Function(Widget, Animation<double>)? transitionBuilder;
 
   @override
@@ -112,4 +114,7 @@ mixin TreeedWidget<TWidget extends StatefulWidget> on State<TWidget> {
 
   TreeedState<T> treeedState<T>(T value) =>
       TreeedState(value)..listen(callUpdateState);
+
+  late final ts = treeedState;
 }
+
